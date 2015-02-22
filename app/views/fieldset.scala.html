@@ -29,8 +29,15 @@
   <!-- Weight -->
   @text(userForm("weight"),
             label = "Weight",
-            placeholder = "Weight in pounds",
-            help = "Please enter your weight in pounds (required)")
+            placeholder = "Weight in kilograms",
+            help = "Please enter your weight in kilograms (required)")
+  
+   <!-- Height -->
+  @text(userForm("height"),
+            label = "Height",
+            placeholder = "Height in centimeters",
+            help = "Please enter your height in centimeters (required)")
+
 
   <!-- Injuries -->
   @select(userForm("injuries"),
@@ -83,7 +90,7 @@
         <!-- Calories -->
     @text(userForm("calories"),
         label = "Calories",
-        placeholder = "calories",
+        placeholder = "Calories",
         help = "Please select the number of calories you would ideally like to burn (optional)")
 
 </div>
