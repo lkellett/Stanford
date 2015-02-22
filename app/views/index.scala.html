@@ -21,12 +21,12 @@
     }
 
     @if(!flash.containsKey("success")) {
-  <div class="well">
+
 
     @form(routes.Application.postIndex(), 'class -> "form-horizontal") {
       @fieldset(userForm, equipment, intensity, injuries, exerciseRx, gender)
     }
-  </div>
+
     }
 
   @if(flash.containsKey("success")) {

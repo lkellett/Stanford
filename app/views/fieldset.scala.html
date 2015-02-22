@@ -9,7 +9,8 @@
 
 <fieldset>
   <!-- Header1 -->
-  <div id="legend">
+    <div class="well">
+    <div id="legend">
     <legend>Tell us a bit about yourself</legend>
   </div>
 
@@ -37,10 +38,11 @@
           optionMap = injuries,
           isMultiple = true,
           help = "Please select any injuries you currently have (optional)")
-
+</div>
 
   <!-- Header2 -->
-  <div id="legend">
+        <div class="well">
+        <div id="legend">
     <legend>Tell us about the kind of workout you're interested in today</legend>
   </div>
 
@@ -63,7 +65,8 @@
               label = "Equipment",
               checkboxMap = equipment,
               help = "Please check any equipment that you have available to you (optional)")
-
+</div>
+    <div class="well">
 
  <!-- Header3 -->
   <div id="legend">
@@ -83,11 +86,13 @@
         placeholder = "calories",
         help = "Please select the number of calories you would ideally like to burn (optional)")
 
-
+</div>
+    <div class="well">
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button id="submit" type="submit" value="Submit" class="btn btn-primary">Suggest a workout for me!</button>
       <button id="cancel" class="btn cancel">Cancel</button>
     </div>
   </div>
+    </div>
 </fieldset>
