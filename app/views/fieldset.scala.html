@@ -1,0 +1,81 @@
+@(userForm: Form[views.formdata.UserFormData],
+  equipment:     Map[String,Boolean],
+    intensity: Map[String,Boolean],
+  injuries:      Map[String,Boolean],
+    exerciseRx: Map[String,Boolean],
+  gender: List[String])
+
+@import bootstrap3._
+
+<fieldset>
+  <!-- Header -->
+  <div id="legend">
+    <legend>Questionnaire</legend>
+  </div>
+
+   <!-- Age -->
+  @text(userForm("age"),
+        label = "Age",
+        placeholder = "age in years",
+        help = "Please enter your age in years. (required)")
+
+        <!-- Gender -->
+    @radiobuttons(userForm("gender"),
+        label = "Gender",
+        buttonNameList = gender,
+        help = "Please select your gender. (required)")
+
+  <!-- Weight -->
+  @text(userForm("weight"),
+            label = "Weight",
+            placeholder = "weight in pounds",
+            help = "Please enter your weight in pounds. (required)")
+
+        <!-- Time -->
+    @text(userForm("time"),
+        label = "Time",
+        placeholder = "time in minutes",
+        help = "Select the time you would ideally like to exercise for. (required)")
+
+
+        <!-- Calories -->
+    @text(userForm("calories"),
+        label = "Calories",
+        placeholder = "calories",
+        help = "Select the number of calories you would ideally like to burn or select an intensity level below")
+
+        <!-- Intensity -->
+    @select(userForm("intensity"),
+        label = "Intensity",
+        optionMap = intensity,
+        isMultiple = false,
+        help = "")
+
+        <!-- Exercise Rx -->
+    @select(userForm("exerciseRx"),
+        label = "Exercise Type",
+        optionMap = exerciseRx,
+        isMultiple = true,
+        help = "Select a preferred exercise type (optional)")
+
+   <!-- Equipment -->
+  @checkboxes(userForm("equipment"),
+              label = "Equipment",
+              checkboxMap = equipment,
+              help = "Check any equipment that you have availble to you. (optional)")
+
+
+  <!-- Injuries -->
+  @select(userForm("Injuries"),
+          label = "Injuries",
+          optionMap = injuries,
+          isMultiple = true,
+          help = "Select any injuries you currently have. (optional)")
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="submit" type="submit" value="Submit" class="btn btn-primary">Submit</button>
+      <button id="cancel" class="btn cancel">Cancel</button>
+    </div>
+  </div>
+</fieldset>
