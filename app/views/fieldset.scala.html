@@ -17,25 +17,25 @@
   @text(userForm("age"),
         label = "Age",
         placeholder = "age in years",
-        help = "Please enter your age in years. (required)")
+        help = "Please enter your age in years (required)")
 
         <!-- Gender -->
     @radiobuttons(userForm("gender"),
         label = "Gender",
         buttonNameList = gender,
-        help = "Please select your gender. (required)")
+        help = "Please select your gender (required)")
 
   <!-- Weight -->
   @text(userForm("weight"),
             label = "Weight",
             placeholder = "weight in pounds",
-            help = "Please enter your weight in pounds. (required)")
+            help = "Please enter your weight in pounds (required)")
 
         <!-- Time -->
     @text(userForm("time"),
         label = "Time",
         placeholder = "time in minutes",
-        help = "Select the time you would ideally like to exercise for. (required)")
+        help = "Select the time you would ideally like to exercise for (required)")
 
 
         <!-- Calories -->
@@ -62,7 +62,7 @@
   @checkboxes(userForm("equipment"),
               label = "Equipment",
               checkboxMap = equipment,
-              help = "Check any equipment that you have availble to you. (optional)")
+              help = "Check any equipment that you have available to you (optional)")
 
 
   <!-- Injuries -->
@@ -70,7 +70,7 @@
           label = "Injuries",
           optionMap = injuries,
           isMultiple = true,
-          help = "Select any injuries you currently have. (optional)")
+          help = "Select any injuries you currently have (optional)")
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
