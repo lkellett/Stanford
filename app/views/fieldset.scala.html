@@ -8,18 +8,18 @@
 @import bootstrap3._
 
 <fieldset>
-  <!-- Header -->
+  <!-- Header1 -->
   <div id="legend">
-    <legend>Questionnaire</legend>
+    <legend>Tell us a bit about yourself</legend>
   </div>
 
    <!-- Age -->
   @text(userForm("age"),
         label = "Age",
-        placeholder = "age in years",
+        placeholder = "Age in years",
         help = "Please enter your age in years (required)")
 
-        <!-- Gender -->
+  <!-- Gender -->
     @radiobuttons(userForm("gender"),
         label = "Gender",
         buttonNameList = gender,
@@ -28,21 +28,21 @@
   <!-- Weight -->
   @text(userForm("weight"),
             label = "Weight",
-            placeholder = "weight in pounds",
+            placeholder = "Weight in pounds",
             help = "Please enter your weight in pounds (required)")
 
-        <!-- Time -->
-    @text(userForm("time"),
-        label = "Time",
-        placeholder = "time in minutes",
-        help = "Select the time you would ideally like to exercise for (required)")
+  <!-- Injuries -->
+  @select(userForm("Injuries"),
+          label = "Injuries",
+          optionMap = injuries,
+          isMultiple = true,
+          help = "Please select any injuries you currently have (optional)"
 
 
-        <!-- Calories -->
-    @text(userForm("calories"),
-        label = "Calories",
-        placeholder = "calories",
-        help = "Select the number of calories you would ideally like to burn or select an intensity level below")
+  <!-- Header2 -->
+  <div id="legend">
+    <legend>Tell us about the kind of workout you're interested in today</legend>
+  </div>
 
         <!-- Intensity -->
     @select(userForm("intensity"),
@@ -56,25 +56,38 @@
         label = "Exercise Type",
         optionMap = exerciseRx,
         isMultiple = true,
-        help = "Select a preferred exercise type (optional)")
+        help = "Please select a preferred exercise type (optional)")
 
    <!-- Equipment -->
   @checkboxes(userForm("equipment"),
               label = "Equipment",
               checkboxMap = equipment,
-              help = "Check any equipment that you have available to you (optional)")
+              help = "Please check any equipment that you have available to you (optional)")
 
 
-  <!-- Injuries -->
-  @select(userForm("Injuries"),
-          label = "Injuries",
-          optionMap = injuries,
-          isMultiple = true,
-          help = "Select any injuries you currently have (optional)")
+ <!-- Header3 -->
+  <div id="legend">
+    <legend>What are your goals for this workout session?</legend>
+  </div>
+
+  <!-- Time -->
+    @text(userForm("time"),
+        label = "Time",
+        placeholder = "Time in minutes",
+        help = "Please select the time in minutes you would ideally like to exercise for (required)")
+
+
+        <!-- Calories -->
+    @text(userForm("calories"),
+        label = "Calories",
+        placeholder = "calories",
+        help = "Please select the number of calories you would ideally like to burn (optional)")
+
+
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button id="submit" type="submit" value="Submit" class="btn btn-primary">Submit</button>
+      <button id="submit" type="submit" value="Submit" class="btn btn-primary">Suggest a workout for me!</button>
       <button id="cancel" class="btn cancel">Cancel</button>
     </div>
   </div>
