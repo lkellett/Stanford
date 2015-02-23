@@ -126,6 +126,13 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;requiresEquipment"/>
+                <owl:onClass rdf:resource="&exercise;Equipment"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&exercise;description"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
@@ -136,13 +143,6 @@
                 <owl:onProperty rdf:resource="&exercise;minimumTime"/>
                 <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;integer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;requiresEquipment"/>
-                <owl:onClass rdf:resource="&exercise;Equipment"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -213,9 +213,8 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Bike_Riding">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">6.2</metabolicEquivalent>
-        <description rdf:datatype="&xsd;double">Bicycling more than 10 mph or bicycling on
-steep uphill terrain</description>
+        <metabolicEquivalent rdf:datatype="&xsd;double">0.0039</metabolicEquivalent>
+        <description rdf:datatype="&xsd;string">Bicycling more than 10 mph or bicycling on steep uphill terrain</description>
         <requiresEquipment rdf:resource="&exercise;Bicycle"/>
         <isOfType rdf:resource="&exercise;Cardiovascular"/>
     </owl:NamedIndividual>
@@ -242,8 +241,8 @@ steep uphill terrain</description>
 
     <owl:NamedIndividual rdf:about="&exercise;Jogging">
         <rdf:type rdf:resource="&exercise;Exercise"/>
+        <metabolicEquivalent rdf:datatype="&xsd;double">0.004</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">5mph or faster</description>
-        <metabolicEquivalent rdf:datatype="&xsd;double">6.0</metabolicEquivalent>
         <isOfType rdf:resource="&exercise;Cardiovascular"/>
         <avoidIfHadInjury rdf:resource="&exercise;Knee"/>
         <requiresEquipment rdf:resource="&exercise;None"/>
@@ -263,8 +262,8 @@ steep uphill terrain</description>
 
     <owl:NamedIndividual rdf:about="&exercise;Moderate">
         <rdf:type rdf:resource="&exercise;Intensity"/>
-        <minimumMetabolicEquivalent rdf:datatype="&xsd;integer">3</minimumMetabolicEquivalent>
-        <maximumMetabolicEquivalent rdf:datatype="&xsd;integer">6</maximumMetabolicEquivalent>
+        <minimumMetabolicEquivalent rdf:datatype="&xsd;double">0.0018</minimumMetabolicEquivalent>
+        <maximumMetabolicEquivalent rdf:datatype="&xsd;double">0.0037</maximumMetabolicEquivalent>
     </owl:NamedIndividual>
     
 
@@ -305,8 +304,8 @@ steep uphill terrain</description>
 
     <owl:NamedIndividual rdf:about="&exercise;Vigorous">
         <rdf:type rdf:resource="&exercise;Intensity"/>
-        <maximumMetabolicEquivalent rdf:datatype="&xsd;integer">20</maximumMetabolicEquivalent>
-        <minimumMetabolicEquivalent rdf:datatype="&xsd;integer">6</minimumMetabolicEquivalent>
+        <minimumMetabolicEquivalent rdf:datatype="&xsd;double">0.0037</minimumMetabolicEquivalent>
+        <maximumMetabolicEquivalent rdf:datatype="&xsd;double">20.0</maximumMetabolicEquivalent>
     </owl:NamedIndividual>
     
 
@@ -315,7 +314,7 @@ steep uphill terrain</description>
 
     <owl:NamedIndividual rdf:about="&exercise;Walking">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">3.0</metabolicEquivalent>
+        <metabolicEquivalent rdf:datatype="&xsd;double">0.0019</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">Walking at a moderate or brisk pace of 3 to 4.5 mph on a level surface inside or outside.</description>
         <isOfType rdf:resource="&exercise;Cardiovascular"/>
         <requiresEquipment rdf:resource="&exercise;None"/>
@@ -335,7 +334,7 @@ steep uphill terrain</description>
 
     <owl:NamedIndividual rdf:about="&exercise;Yoga">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">3.4</metabolicEquivalent>
+        <metabolicEquivalent rdf:datatype="&xsd;double">0.00181</metabolicEquivalent>
         <minimumTime rdf:datatype="&xsd;integer">30</minimumTime>
         <avoidIfHadInjury rdf:resource="&exercise;Shoulder"/>
         <isOfType rdf:resource="&exercise;Strength"/>

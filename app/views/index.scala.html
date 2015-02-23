@@ -1,42 +1,42 @@
 @(userForm: Form[views.formdata.UserFormData],
-  equipment:Map[String,Boolean],
-  intensity:Map[String,Boolean],
-  injuries:Map[String,Boolean],
-  exerciseRx:Map[String,Boolean],
-  gender: List[String])
+        equipment: Map[String, Boolean],
+        intensity: Map[String, Boolean],
+        injuries: Map[String, Boolean],
+        exerciseRx: Map[String, Boolean],
+        gender: List[String])
 
 @import helper._
 
 @main("Index") {
 
 
-  <div class="container">
+    <div class="container">
 
-    @if(flash.containsKey("error")) {
-      <div class="well">
-        <div id="error-message" class="text-danger">
-        @flash.get("error")
-        </div>
-      </div>
-    }
+        @if(flash.containsKey("error")) {
+            <div class="well">
+                <div id="error-message" class="text-danger">
+                @flash.get("error")
+                </div>
+            </div>
+        }
 
-    @if(!flash.containsKey("success")) {
+        @if(!flash.containsKey("success")) {
 
 
-    @form(routes.Application.postIndex(), 'class -> "form-horizontal") {
-      @fieldset(userForm, equipment, intensity, injuries, exerciseRx, gender)
-    }
+            @form(routes.Application.postIndex(), 'class -> "form-horizontal") {
+                @fieldset(userForm, equipment, intensity, injuries, exerciseRx, gender)
+            }
 
-    }
+        }
 
-  @if(flash.containsKey("success")) {
-  <div class="well">
-    <div id="success-message" class="text-success">
-      @flash.get("success")
+        @if(flash.containsKey("success")) {
+            <div class="well">
+                <div id="success-message" class="text-success">
+                @flash.get("success")
+                </div>
+            </div>
+        }
+
     </div>
-  </div>
-  }
-
-</div>
 
 }

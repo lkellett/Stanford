@@ -42,6 +42,8 @@ public class Equipment {
     return name;
   }
 
+  public String getIRIName() { return name.replace(" ", "_");}
+
   /**
    *
    */

@@ -6,6 +6,7 @@ import java.util.*;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.search.EntitySearcher;
 import views.formdata.UserFormData;
 
 /**
@@ -21,10 +22,14 @@ public class Intensity {
 
   private IRI iri;
   private String name;
+  private Double minimum;
+  private Double maximum;
 
-  public Intensity(IRI iri, String name) {
+  public Intensity(IRI iri, String name, Double minimum, Double maximum) {
     this.iri = iri;
     this.name = name;
+    this.minimum = minimum;
+    this.maximum = maximum;
   }
 
   public void setIri(IRI iri) {
@@ -43,19 +48,39 @@ public class Intensity {
     return name;
   }
 
+  public Double getMinimum() {
+    return minimum;
+  }
+
+  public void setMinimum(Double minimum) {
+    this.minimum = minimum;
+  }
+
+  public Double getMaximum() {
+    return maximum;
+  }
+
+  public void setMaximum(Double maximum) {
+    this.maximum = maximum;
+  }
+
   /**
    *
    */
-  public static Map<String, Boolean> makeIntensityMap(OWLReasoner reasoner, OWLDataFactory factory) {
+  public static Map<String, Boolean> makeIntensityMap(OWLOntology ontology, OWLReasoner reasoner, OWLDataFactory factory) {
     Map<String, Boolean> intensityMap = new HashMap<String, Boolean>();
 
+    String ns = "http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#";
     IRI iri = IRI
-            .create("http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Intensity");
+            .create(ns + "Intensity");
 
+    OWLDataFactory df = ontology.getOWLOntologyManager().getOWLDataFactory();
+    OWLDataProperty min = df.getOWLDataProperty(IRI.create(ns + "minimumMetabolicEquivalent"));
+    OWLDataProperty max = df.getOWLDataProperty(IRI.create(ns + "maximumMetabolicEquivalent"));
 
-    OWLClass equipment = factory.getOWLClass(iri);
+    OWLClass intensity = factory.getOWLClass(iri);
     NodeSet<OWLNamedIndividual> individualsNodeSet = reasoner.getInstances(
-            equipment, true);
+            intensity, true);
 
     Set<OWLNamedIndividual> individuals = individualsNodeSet.getFlattened();
 
@@ -65,7 +90,18 @@ public class Intensity {
       String fragment = ind.getIRI().getFragment();
       String name = fragment.replace("_", " ");
 
-      Intensity intensity1 = new Intensity(ind.getIRI(), name);
+      Double minVal = null;
+      Double maxVal = null;
+      for (OWLLiteral lit : EntitySearcher.getDataPropertyValues(ind, min, ontology)) {
+        minVal = Double.parseDouble(lit.getLiteral());
+        System.out.println("Min" + min + minVal);
+      }
+      for (OWLLiteral lit : EntitySearcher.getDataPropertyValues(ind, max, ontology)) {
+        maxVal = Double.parseDouble(lit.getLiteral());
+        System.out.println("Max" + max + maxVal);
+      }
+
+      Intensity intensity1 = new Intensity(ind.getIRI(), name, minVal, maxVal);
       allIntensity.add(intensity1);
 
       intensityMap.put(name, false);
@@ -77,7 +113,10 @@ public class Intensity {
    *
    */
   public static Intensity findIntensity(String intensityName) {
+    System.out.println("In Here " + intensityName);
+    System.out.println("Int size"+ allIntensity.size());
     for (Intensity intensity : allIntensity) {
+      System.out.println("In Here + " + intensity.getName());
       if (intensityName.equals(intensity.getName())) {
         return intensity;
       }

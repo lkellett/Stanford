@@ -1,6 +1,7 @@
 package models;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.Set;
@@ -32,41 +33,28 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
  */
 public class DLQuery {
 
+    DLQueryEngine dlQueryEngine;
 
-    public DLQuery() {
+    public DLQuery(OWLOntology ontology) {
 
+        OWLReasoner reasoner = new Reasoner.ReasonerFactory().createReasoner(ontology);
+
+        ShortFormProvider shortFormProvider = new SimpleShortFormProvider();
+
+        dlQueryEngine = new DLQueryEngine(reasoner,
+                shortFormProvider);
     }
 
+    public Set<OWLNamedIndividual> executeQuery(String expression) {
 
-
-
-    OWLReasoner reasoner = new Reasoner.ReasonerFactory().createReasoner(ontology);
-
-
-
-            ShortFormProvider shortFormProvider = new SimpleShortFormProvider();
-            // Create the DLQueryPrinter helper class. This will manage the
-            // parsing of input and printing of results
-            DLQueryPrinter dlQueryPrinter = new DLQueryPrinter(new DLQueryEngine(reasoner,
-                    shortFormProvider), shortFormProvider);
-            // Enter the query loop. A user is expected to enter class
-            // expression on the command line.
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
-            while (true) {
-                System.out
-                        .println("Type a class expression in Manchester Syntax and press Enter (or press x to exit):");
-                String classExpression = br.readLine();
-                // Check for exit condition
-                if (classExpression == null || classExpression.equalsIgnoreCase("x")) {
-                    break;
-                }
-                dlQueryPrinter.askQuery(classExpression.trim());
-                System.out.println();
-            }
+        Set<OWLNamedIndividual> individuals = null;
+        try {
+            individuals = dlQueryEngine.getInstances(
+                    expression, true);
+        } catch (ParserException e) {
+            e.printStackTrace();
         }
-
-
-
+        return individuals;
     }
 
     class DLQueryEngine {
@@ -78,7 +66,7 @@ public class DLQuery {
             parser = new DLQueryParser(reasoner.getRootOntology(), shortFormProvider);
         }
 
-        public Set<OWLClass> getSuperClasses(String classExpressionString, boolean direct) {
+        public Set<OWLClass> getSuperClasses(String classExpressionString, boolean direct) throws ParserException {
             if (classExpressionString.trim().length() == 0) {
                 return Collections.emptySet();
             }
@@ -89,7 +77,7 @@ public class DLQuery {
             return superClasses.getFlattened();
         }
 
-        public Set<OWLClass> getEquivalentClasses(String classExpressionString) {
+        public Set<OWLClass> getEquivalentClasses(String classExpressionString) throws ParserException {
             if (classExpressionString.trim().length() == 0) {
                 return Collections.emptySet();
             }
@@ -105,7 +93,7 @@ public class DLQuery {
             return result;
         }
 
-        public Set<OWLClass> getSubClasses(String classExpressionString, boolean direct) {
+        public Set<OWLClass> getSubClasses(String classExpressionString, boolean direct) throws ParserException {
             if (classExpressionString.trim().length() == 0) {
                 return Collections.emptySet();
             }
@@ -116,7 +104,7 @@ public class DLQuery {
         }
 
         public Set<OWLNamedIndividual> getInstances(String classExpressionString,
-                                                    boolean direct) {
+                                                    boolean direct) throws ParserException {
             if (classExpressionString.trim().length() == 0) {
                 return Collections.emptySet();
             }
@@ -143,7 +131,7 @@ public class DLQuery {
                     importsClosure, shortFormProvider);
         }
 
-        public OWLClassExpression parseClassExpression(String classExpressionString) {
+        public OWLClassExpression parseClassExpression(String classExpressionString) throws ParserException {
             OWLDataFactory dataFactory = rootOntology.getOWLOntologyManager()
                     .getOWLDataFactory();
             ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(
@@ -154,59 +142,5 @@ public class DLQuery {
             return parser.parseClassExpression();
         }
     }
-
-    class DLQueryPrinter {
-        private final DLQueryEngine dlQueryEngine;
-        private final ShortFormProvider shortFormProvider;
-
-        public DLQueryPrinter(DLQueryEngine engine, ShortFormProvider shortFormProvider) {
-            this.shortFormProvider = shortFormProvider;
-            dlQueryEngine = engine;
-        }
-
-        public void askQuery(String classExpression) {
-            if (classExpression.length() == 0) {
-                System.out.println("No class expression specified");
-            } else {
-                try {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("\\nQUERY:   ").append(classExpression).append("\\n\\n");
-                    Set<OWLClass> superClasses = dlQueryEngine.getSuperClasses(
-                            classExpression, false);
-                    printEntities("SuperClasses", superClasses, sb);
-                    Set<OWLClass> equivalentClasses = dlQueryEngine
-                            .getEquivalentClasses(classExpression);
-                    printEntities("EquivalentClasses", equivalentClasses, sb);
-                    Set<OWLClass> subClasses = dlQueryEngine.getSubClasses(classExpression,
-                            true);
-                    printEntities("SubClasses", subClasses, sb);
-                    Set<OWLNamedIndividual> individuals = dlQueryEngine.getInstances(
-                            classExpression, true);
-                    printEntities("Instances", individuals, sb);
-                    System.out.println(sb.toString());
-                } catch (ParserException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
-
-        private void printEntities(String name, Set<? extends OWLEntity> entities,
-                                   StringBuilder sb) {
-            sb.append(name);
-            int length = 50 - name.length();
-            for (int i = 0; i < length; i++) {
-                sb.append(".");
-            }
-            sb.append("\\n\\n");
-            if (!entities.isEmpty()) {
-                for (OWLEntity entity : entities) {
-                    sb.append("\\t").append(shortFormProvider.getShortForm(entity))
-                            .append("\\n");
-                }
-            } else {
-                sb.append("\\t[NONE]\\n");
-            }
-            sb.append("\\n");
-        }
 
 }

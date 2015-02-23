@@ -58,7 +58,7 @@
         label = "Intensity",
         optionMap = intensity,
         isMultiple = false,
-        help = "")
+        help = "Please select a workout intensity (required)")
 
         <!-- Exercise Rx -->
     @select(userForm("exerciseRx"),
@@ -84,14 +84,14 @@
     @text(userForm("time"),
         label = "Time",
         placeholder = "Time in minutes",
-        help = "Please select the time in minutes you would ideally like to exercise for (required)")
+        help = "Please select either the time in minutes you would like to exercise for or the number of calories you would like to burn")
 
 
         <!-- Calories -->
     @text(userForm("calories"),
         label = "Calories",
         placeholder = "Calories",
-        help = "Please select the number of calories you would ideally like to burn (optional)")
+        help = "")
 
 </div>
     <div class="well">

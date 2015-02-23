@@ -1,0 +1,45 @@
+@(exercises: List[Exercise])
+
+@import helper._
+
+@main("Success") {
+
+
+    <div class="container">
+
+        @if(flash.containsKey("error")) {
+            <div class="well">
+                <div id="error-message" class="text-danger">
+                @flash.get("error")
+                </div>
+            </div>
+        }
+
+
+        <div id="legend">
+            <legend>Exercise Recommendations</legend>
+        </div>
+
+
+        @for(exercise <- exercises) {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@exercise.name</h3>
+                </div>
+                <div class="panel-body">
+                    <p>@exercise.description</p>
+                    @if(exercise.equipment != "None") {
+                        <p><b>Equipment Required: </b>@exercise.equipment</p>
+                    }
+                    @if(exercise.injuries != "") {
+                        <p><b>Avoid for the following injuries: </b>@exercise.injuries</p>
+                    }
+
+                    <p><strong>Calories that will be burned during a @exercise.time minute workout: @exercise.calories</strong></p>
+                </div>
+            </div>
+        }
+
+    </div>
+
+}

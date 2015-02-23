@@ -26,7 +26,7 @@ public class UserFormData {
   public String gender;
   public String intensity;
   public Integer calories;
-  public String exerciseRx;
+  public List<String> exerciseRx;
   public List<String> injuries = new ArrayList<String>();
 
   /** Required for form instantiation. */

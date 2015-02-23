@@ -42,6 +42,8 @@ public class Injury {
     return name;
   }
 
+  public String getIRIName() { return name.replace(" ", "_");}
+
   /**
    *
    */
