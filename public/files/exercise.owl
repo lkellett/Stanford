@@ -113,9 +113,23 @@
     <owl:Class rdf:about="&exercise;Exercise">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;description"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&exercise;metabolicEquivalent"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;double"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;minimumTime"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -129,20 +143,6 @@
                 <owl:onProperty rdf:resource="&exercise;requiresEquipment"/>
                 <owl:onClass rdf:resource="&exercise;Equipment"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;description"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;minimumTime"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -166,14 +166,14 @@
     <owl:Class rdf:about="&exercise;Intensity">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;minimumMetabolicEquivalent"/>
+                <owl:onProperty rdf:resource="&exercise;maximumMetabolicEquivalent"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;double"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;maximumMetabolicEquivalent"/>
+                <owl:onProperty rdf:resource="&exercise;minimumMetabolicEquivalent"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;double"/>
             </owl:Restriction>
@@ -213,7 +213,7 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Bike_Riding">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">0.0039</metabolicEquivalent>
+        <metabolicEquivalent rdf:datatype="&xsd;double">7.0</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">Bicycling more than 10 mph or bicycling on steep uphill terrain</description>
         <requiresEquipment rdf:resource="&exercise;Bicycle"/>
         <isOfType rdf:resource="&exercise;Cardiovascular"/>
@@ -241,8 +241,8 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Jogging">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">0.004</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">5mph or faster</description>
+        <metabolicEquivalent rdf:datatype="&xsd;double">8.1</metabolicEquivalent>
         <isOfType rdf:resource="&exercise;Cardiovascular"/>
         <avoidIfHadInjury rdf:resource="&exercise;Knee"/>
         <requiresEquipment rdf:resource="&exercise;None"/>
@@ -262,8 +262,8 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Moderate">
         <rdf:type rdf:resource="&exercise;Intensity"/>
-        <minimumMetabolicEquivalent rdf:datatype="&xsd;double">0.0018</minimumMetabolicEquivalent>
-        <maximumMetabolicEquivalent rdf:datatype="&xsd;double">0.0037</maximumMetabolicEquivalent>
+        <minimumMetabolicEquivalent rdf:datatype="&xsd;double">3.0</minimumMetabolicEquivalent>
+        <maximumMetabolicEquivalent rdf:datatype="&xsd;double">6.0</maximumMetabolicEquivalent>
     </owl:NamedIndividual>
     
 
@@ -304,8 +304,8 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Vigorous">
         <rdf:type rdf:resource="&exercise;Intensity"/>
-        <minimumMetabolicEquivalent rdf:datatype="&xsd;double">0.0037</minimumMetabolicEquivalent>
         <maximumMetabolicEquivalent rdf:datatype="&xsd;double">20.0</maximumMetabolicEquivalent>
+        <minimumMetabolicEquivalent rdf:datatype="&xsd;double">6.0</minimumMetabolicEquivalent>
     </owl:NamedIndividual>
     
 
@@ -314,7 +314,7 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Walking">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">0.0019</metabolicEquivalent>
+        <metabolicEquivalent rdf:datatype="&xsd;double">4.0</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">Walking at a moderate or brisk pace of 3 to 4.5 mph on a level surface inside or outside.</description>
         <isOfType rdf:resource="&exercise;Cardiovascular"/>
         <requiresEquipment rdf:resource="&exercise;None"/>
@@ -334,8 +334,8 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Yoga">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <metabolicEquivalent rdf:datatype="&xsd;double">0.00181</metabolicEquivalent>
         <minimumTime rdf:datatype="&xsd;integer">30</minimumTime>
+        <metabolicEquivalent rdf:datatype="&xsd;double">5.0</metabolicEquivalent>
         <avoidIfHadInjury rdf:resource="&exercise;Shoulder"/>
         <isOfType rdf:resource="&exercise;Strength"/>
         <requiresEquipment rdf:resource="&exercise;Yoga_Studio"/>

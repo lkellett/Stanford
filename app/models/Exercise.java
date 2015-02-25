@@ -185,9 +185,9 @@ public class Exercise {
         Double bmr = null;
 
         if (user.getGender().equals("M")) {
-            bmr = (13.75 * user.getWeight()) + (5 * user.getHeight()) - (6.76 * user.getAge()) + 66;
+            bmr = ((13.75 * user.getWeight()) + (5 * user.getHeight()) - (6.76 * user.getAge()) + 66)/1440;
         } else if (user.getGender().equals("F")) {
-            bmr = (9.56 * user.getWeight()) + (1.85 * user.getHeight()) - (4.68 * user.getAge()) + 655;
+            bmr = ((9.56 * user.getWeight()) + (1.85 * user.getHeight()) - (4.68 * user.getAge()) + 655)/1440;
         }
         System.out.println("&&&^^" + bmr);
         return bmr;
