@@ -30,7 +30,7 @@ public class UserFormData {
   public List<String> exerciseRx;
   public List<String> injuries = new ArrayList<String>();
   public List<String> medicalCondition = new ArrayList<String>();
-  
+
   /** Required for form instantiation. */
   public UserFormData() {
   }
