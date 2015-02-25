@@ -38,6 +38,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#hasPriority -->
+
+    <owl:ObjectProperty rdf:about="&exercise;hasPriority"/>
+    
+
+
     <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#isOfType -->
 
     <owl:ObjectProperty rdf:about="&exercise;isOfType"/>
@@ -198,7 +204,20 @@
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;hasPriority"/>
+                <owl:onClass rdf:resource="&exercise;Priority"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Priority -->
+
+    <owl:Class rdf:about="&exercise;Priority"/>
     
 
 
@@ -254,6 +273,7 @@
     <owl:NamedIndividual rdf:about="&exercise;Chest_pain">
         <rdf:type rdf:resource="&exercise;Medical_Conditions"/>
         <warning rdf:datatype="&xsd;string">Please talk to your physician. If physician says ok, consider the following activities</warning>
+        <hasPriority rdf:resource="&exercise;High"/>
     </owl:NamedIndividual>
     
 
@@ -262,6 +282,14 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Heart">
         <rdf:type rdf:resource="&exercise;Injuries"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#High -->
+
+    <owl:NamedIndividual rdf:about="&exercise;High">
+        <rdf:type rdf:resource="&exercise;Priority"/>
     </owl:NamedIndividual>
     
 

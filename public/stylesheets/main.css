@@ -1,2 +1,7 @@
 body {
 }
+
+.priority {
+    height: 45px;
+    padding: 5px;
+}
