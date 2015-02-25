@@ -207,15 +207,11 @@ public class User {
         List<Exercise> exclusions = Exercise.parseOwlResults(exclusionInd, ontology, this);
 
         StringBuilder queryString = new StringBuilder("(requiresEquipment value None");
-        i = 0;
         for(Equipment equip: equipment)
         {
-            if(i > 0)
-            {
-                queryString.append(" or ");
-            }
+            queryString.append(" or ");
+
             queryString.append("requiresEquipment value " + equip.getIRIName());
-            i++;
         }
         queryString.append(") ");
 

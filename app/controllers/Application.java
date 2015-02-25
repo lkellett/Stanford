@@ -65,19 +65,22 @@ public class Application extends Controller {
 
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
         OWLOntology ontology = loadOntology(manager);
+        OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
+        OWLReasoner reasoner = reasonerFactory.createReasoner(ontology);
+        OWLDataFactory factory = manager.getOWLDataFactory();
         // Get the submitted form data from the request object, and run validation.
         Form<UserFormData> formData = Form.form(UserFormData.class).bindFromRequest();
 
         if (formData.hasErrors()) {
             // Don't call formData.get() when there are errors, pass 'null' to helpers instead.
-            flash("error", "Please correct errors above.");
+            flash("error", "Please correct errors in the submission form");
             return badRequest(index.render(formData,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
+                    Equipment.makeEquipmentMap(reasoner, factory),
+                    Intensity.makeIntensityMap(ontology, reasoner, factory),
+                    Injury.makeInjuriesMap(reasoner, factory),
+                    ExerciseRx.makeExerciseRxMap(reasoner, factory),
+                    MedicalConditions.makeMedicalConditionMap(ontology, reasoner, factory),
+                    getGenders()
             ));
         } else {
             User user = new User(formData.get());

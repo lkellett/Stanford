@@ -16,7 +16,7 @@
         @if(flash.containsKey("error")) {
             <div class="well">
                 <div id="error-message" class="text-danger">
-                @flash.get("error")
+                    <img src="@routes.Assets.at("images/High.png")" alt="" class="priority"> @flash.get("error")
                 </div>
             </div>
         }

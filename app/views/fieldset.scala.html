@@ -17,25 +17,26 @@
 
             <!-- Age -->
         @text(userForm("age"),
-            label = "Age",
+            label = "Age*",
             placeholder = "Age in years",
             help = "Please enter your age in years (required)")
 
             <!-- Gender -->
         @radiobuttons(userForm("gender"),
-            label = "Gender",
+            label = "Gender*",
             buttonNameList = gender,
             help = "Please select your gender (required)")
 
             <!-- Weight -->
         @text(userForm("weight"),
-            label = "Weight",
+            label = "Weight*",
             placeholder = "Weight in kilograms",
-            help = "Please enter your weight in kilograms (required)")
+            help = "Please enter your weight in kilograms (required)",
+            data-error = "Must be a number")
 
             <!-- Height -->
         @text(userForm("height"),
-            label = "Height",
+            label = "Height*",
             placeholder = "Height in centimeters",
             help = "Please enter your height in centimeters (required)")
 
@@ -62,7 +63,7 @@
 
             <!-- Intensity -->
         @select(userForm("intensity"),
-            label = "Intensity",
+            label = "Intensity*",
             optionMap = intensity,
             isMultiple = false,
             help = "Please select a workout intensity (required)")
@@ -84,7 +85,7 @@
 
             <!-- Header3 -->
         <div id="legend">
-            <legend>What are your goals for this workout session?</legend>
+            <legend>What are your goals for this workout session?*</legend>
         </div>
 
             <!-- Time -->

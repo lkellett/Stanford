@@ -30,10 +30,11 @@ public class UserFormData {
   public List<String> exerciseRx;
   public List<String> injuries = new ArrayList<String>();
   public List<String> medicalCondition = new ArrayList<String>();
-
+  
   /** Required for form instantiation. */
   public UserFormData() {
   }
+
 
   /**
    * Validates Form<StudentFormData>.
@@ -55,47 +56,29 @@ public class UserFormData {
 
     List<ValidationError> errors = new ArrayList<ValidationError>();
 
-//    if (name == null || name.length() == 0) {
-//      errors.add(new ValidationError("name", "No name was given."));
-//    }
-//
-//    if (password == null || password.length() == 0) {
-//      errors.add(new ValidationError("password", "No password was given."));
-//    } else if (password.length() < 5) {
-//      errors.add(new ValidationError("password", "Given password is less than five characters."));
-//    }
-//
-//    // Hobbies are optional, but if supplied must exist in database.
-//    if (hobbies.size() > 0) {
-//      for (String hobby : hobbies) {
-//        if (Equipment.findHobby(hobby) == null) {
-//          errors.add(new ValidationError("hobbies", "Unknown hobby: " + hobby + "."));
-//        }
-//      }
-//    }
-//
-//    // Grade Level is required and must exist in database.
-//    if (level == null || level.length() == 0) {
-//      errors.add(new ValidationError("level", "No grade level was given."));
-//    } else if (Gender.findLevel(level) == null) {
-//      errors.add(new ValidationError("level", "Invalid grade level: " + level + "."));
-//    }
-//
-//    // GPA is required and must exist in database.
-//    if (gpa == null || gpa.length() == 0) {
-//      errors.add(new ValidationError("gpa", "No gpa was given."));
-//    } else if (Intensity.findGPA(gpa) == null) {
-//      errors.add(new ValidationError("gpa", "Invalid GPA: " + gpa + "."));
-//    }
-//
-//    // Majors are optional, but if supplied must exist in database.
-//    if (majors.size() > 0) {
-//      for (String major : majors) {
-//        if (Injuries.findMajor(major) == null) {
-//          errors.add(new ValidationError("majors", "Unknown Major: " + major + "."));
-//        }
-//      }
-//    }
+    if (age == null || age > 0) {
+        errors.add(new ValidationError("age", "Please fill in the age field"));
+    }
+    if (height == null || height > 0) {
+      errors.add(new ValidationError("height", "Please fill in the height field"));
+    }
+    if (gender == null || gender.length() > 0) {
+      errors.add(new ValidationError("gender", "Please fill in the gender field"));
+    }
+    if (weight == null || weight > 0) {
+      errors.add(new ValidationError("weight", "Please fill in the weight field"));
+    }
+    if (intensity == null || intensity.length() == 0) {
+      errors.add(new ValidationError("intensity", "Please select an intensity value"));
+    }
+    if ((time == null || time > 0) || (calories == null || calories > 0)) {
+      errors.add(new ValidationError("time", "You need to complete one of either the time or calories field"));
+      errors.add(new ValidationError("calories", ""));
+    }
+    if (!(time == null || time > 0) && !(calories == null || calories > 0)) {
+      errors.add(new ValidationError("time", "Only one of either the time or calories fields can be completed"));
+      errors.add(new ValidationError("calories", ""));
+    }
 
     if(errors.size() > 0)
       return errors;

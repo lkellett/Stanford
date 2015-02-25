@@ -105,7 +105,7 @@ public class Exercise {
 
                 Exercise exercise = new Exercise();
                 exercise.setId(individual.toStringID());
-                exercise.setName(shortFormProvider.getShortForm(individual));
+                exercise.setName(shortFormProvider.getShortForm(individual).replace("_", " "));
                 exercise.setIntensity(user.getIntensity().getName());
 
                 String ns = "http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#";
@@ -141,7 +141,7 @@ public class Exercise {
                         injuries.append(", ");
                     }
                     if (related.isNamed()) {
-                        injuries.append(shortFormProvider.getShortForm((OWLNamedIndividual) related));
+                        injuries.append(shortFormProvider.getShortForm((OWLNamedIndividual) related).replace("_", " "));
                         i++;
                     }
                 }
@@ -154,7 +154,7 @@ public class Exercise {
                         equipment.append(", ");
                     }
                     if (equip.isNamed()) {
-                        equipment.append(shortFormProvider.getShortForm((OWLNamedIndividual) equip));
+                        equipment.append(shortFormProvider.getShortForm((OWLNamedIndividual) equip).replace("_", " "));
                         j++;
                     }
                 }
