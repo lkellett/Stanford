@@ -21,6 +21,7 @@ public class Exercise {
     public Integer time;
     public String id;
     public Float met;
+    public String intensity;
 
     public String getName() {
         return name;
@@ -86,6 +87,14 @@ public class Exercise {
         this.met = met;
     }
 
+    public String getIntensity() {
+        return intensity;
+    }
+
+    public void setIntensity(String intensity) {
+        this.intensity = intensity;
+    }
+
     public static List<Exercise> parseOwlResults(Set<OWLNamedIndividual> individuals, OWLOntology ontology, User user) {
 
         List<Exercise> exercises = new ArrayList<Exercise>();
@@ -97,6 +106,7 @@ public class Exercise {
                 Exercise exercise = new Exercise();
                 exercise.setId(individual.toStringID());
                 exercise.setName(shortFormProvider.getShortForm(individual));
+                exercise.setIntensity(user.getIntensity().getName());
 
                 String ns = "http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#";
                 OWLDataFactory df = ontology.getOWLOntologyManager().getOWLDataFactory();
@@ -172,11 +182,11 @@ public class Exercise {
         return calories.intValue();
     }
 
-    public Integer setTimeCalc(User user, Float met) {
+    public void setTimeCalc(User user, Float met) {
 
-        Double time = user.calories/(getBMR(user) * met);
+        Double timeVal = user.calories/(getBMR(user) * met);
 
-        return time.intValue();
+        this.time = timeVal.intValue();
     }
 
     public Double getBMR(User user) {

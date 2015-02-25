@@ -38,10 +38,11 @@
             @for(exercise <- exercises) {
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@exercise.name</h3>
+                        <h3 class="panel-title">@exercise.name
+                        <div class="intensity">@exercise.intensity Intensity</div></h3>
                     </div>
                     <div class="panel-body">
-                        <p>@exercise.description</p>
+                        <p class="exercise">@exercise.description</p>
                         @if(exercise.equipment != "None") {
                             <p><b>Equipment Required: </b>@exercise.equipment</p>
                         }
@@ -49,7 +50,39 @@
                             <p><b>Avoid for the following injuries: </b>@exercise.injuries</p>
                         }
 
-                        <p><strong>Calories that will be burned during a @exercise.time minute workout: @exercise.calories</strong></p>
+
+                            <div class="well">
+                            @if(exercise.calories < 101) {
+                                <img src="@routes.Assets.at("images/apple.png")" alt="" class="calories">
+                            }
+                                @if(exercise.calories > 100 && exercise.calories < 251) {
+                                    <img src="@routes.Assets.at("images/cookie.png")" alt="" class="calories">
+                                }
+                                @if(exercise.calories > 250 && exercise.calories < 501) {
+                                    <img src="@routes.Assets.at("images/cupcake.png")" alt="" class="calories">
+                                }
+                                @if(exercise.calories > 500 && exercise.calories < 751) {
+                                    <img src="@routes.Assets.at("images/french_fries.png")" alt="" class="calories">
+                                    <img src="@routes.Assets.at("images/burger.png")" alt="" class="calories">
+                                }
+                                @if(exercise.calories > 750 && exercise.calories < 1001) {
+                                    <img src="@routes.Assets.at("images/chocolate.png")" alt="" class="calories">
+                                }
+                                @if(exercise.calories > 1000 && exercise.calories < 1501) {
+                                    <img src="@routes.Assets.at("images/french_fries.png")" alt="" class="calories">
+                                    <img src="@routes.Assets.at("images/burger.png")" alt="" class="calories">
+                                    <img src="@routes.Assets.at("images/milkshake.png")" alt="" class="calories">
+                                }
+                                @if(exercise.calories > 1500 ) {
+                                    <img src="@routes.Assets.at("images/milkshake.png")" alt="" class="calories">
+                                    <img src="@routes.Assets.at("images/french_fries.png")" alt="" class="calories">
+                                    <img src="@routes.Assets.at("images/burger.png")" alt="" class="calories">
+                                    <img src="@routes.Assets.at("images/cake.png")" alt="" class="calories">
+                                }
+                            <strong>
+                                Calories that will be burned during a @exercise.time minute workout: @exercise.calories</strong>
+                                </div>
+
                     </div>
                 </div>
             }

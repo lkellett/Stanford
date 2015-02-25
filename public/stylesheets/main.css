@@ -5,3 +5,16 @@ body {
     height: 45px;
     padding: 5px;
 }
+
+.calories {
+    height: 50px;
+    padding: 3px;
+}
+
+.intensity {
+    float: right;
+}
+
+.exercise {
+    padding-bottom: 10px;
+}

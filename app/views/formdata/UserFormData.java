@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class UserFormData {
 
-  public Integer time = 0;
+  public Integer time;
   public Integer height;
   public Integer weight;
   public Integer age;

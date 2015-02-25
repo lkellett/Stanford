@@ -66,10 +66,12 @@ public class Equipment {
       String fragment = ind.getIRI().getFragment();
       String name = fragment.replace("_", " ");
 
-      Equipment equipment1 = new Equipment(ind.getIRI(), name);
-      allEquipment.add(equipment1);
+      if(!name.equals("None")) {
+        Equipment equipment1 = new Equipment(ind.getIRI(), name);
+        allEquipment.add(equipment1);
 
-      equipmentMap.put(name, false);
+        equipmentMap.put(name, false);
+      }
     }
     return equipmentMap;
   }
