@@ -1,6 +1,7 @@
 package views.formdata;
 
 
+import models.MedicalConditions;
 import play.data.validation.ValidationError;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class UserFormData {
   public Integer calories;
   public List<String> exerciseRx;
   public List<String> injuries = new ArrayList<String>();
+  public List<String> medicalCondition = new ArrayList<String>();
 
   /** Required for form instantiation. */
   public UserFormData() {

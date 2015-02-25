@@ -179,7 +179,6 @@ public class Exercise {
         return time.intValue();
     }
 
-
     public Double getBMR(User user) {
 
         Double bmr = null;
@@ -189,7 +188,6 @@ public class Exercise {
         } else if (user.getGender().equals("F")) {
             bmr = ((9.56 * user.getWeight()) + (1.85 * user.getHeight()) - (4.68 * user.getAge()) + 655)/1440;
         }
-        System.out.println("&&&^^" + bmr);
         return bmr;
     }
 

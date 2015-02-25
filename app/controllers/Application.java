@@ -47,6 +47,7 @@ public class Application extends Controller {
                 Intensity.makeIntensityMap(ontology, reasoner, factory),
                 Injury.makeInjuriesMap(reasoner, factory),
                 ExerciseRx.makeExerciseRxMap(reasoner, factory),
+                MedicalConditions.makeMedicalConditionMap(ontology, reasoner, factory),
                 getGenders()
         ));
     }
@@ -75,12 +76,14 @@ public class Application extends Controller {
                     null,
                     null,
                     null,
+                    null,
                     null
             ));
         } else {
             User user = new User(formData.get());
             List<Exercise> exercises = user.findExercises(ontology);
-            return ok(success.render(exercises
+
+            return ok(success.render(exercises, user.getMedicalCondition()
             ));
         }
     }

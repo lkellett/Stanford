@@ -91,6 +91,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#warning -->
+
+    <owl:DatatypeProperty rdf:about="&exercise;warning"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -182,6 +188,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Medical_Conditions -->
+
+    <owl:Class rdf:about="&exercise;Medical_Conditions">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;warning"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -225,6 +245,15 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Cardiovascular">
         <rdf:type rdf:resource="&exercise;Exercise_Rx"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Chest_pain -->
+
+    <owl:NamedIndividual rdf:about="&exercise;Chest_pain">
+        <rdf:type rdf:resource="&exercise;Medical_Conditions"/>
+        <warning rdf:datatype="&xsd;string">Please talk to your physician. If physician says ok, consider the following activities</warning>
     </owl:NamedIndividual>
     
 

@@ -94,11 +94,9 @@ public class Intensity {
       Double maxVal = null;
       for (OWLLiteral lit : EntitySearcher.getDataPropertyValues(ind, min, ontology)) {
         minVal = Double.parseDouble(lit.getLiteral());
-        System.out.println("Min" + min + minVal);
       }
       for (OWLLiteral lit : EntitySearcher.getDataPropertyValues(ind, max, ontology)) {
         maxVal = Double.parseDouble(lit.getLiteral());
-        System.out.println("Max" + max + maxVal);
       }
 
       Intensity intensity1 = new Intensity(ind.getIRI(), name, minVal, maxVal);
@@ -113,10 +111,7 @@ public class Intensity {
    *
    */
   public static Intensity findIntensity(String intensityName) {
-    System.out.println("In Here " + intensityName);
-    System.out.println("Int size"+ allIntensity.size());
     for (Intensity intensity : allIntensity) {
-      System.out.println("In Here + " + intensity.getName());
       if (intensityName.equals(intensity.getName())) {
         return intensity;
       }

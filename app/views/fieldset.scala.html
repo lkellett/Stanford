@@ -1,105 +1,112 @@
 @(userForm: Form[views.formdata.UserFormData],
-  equipment:     Map[String,Boolean],
-    intensity: Map[String,Boolean],
-  injuries:      Map[String,Boolean],
-    exerciseRx: Map[String,Boolean],
-  gender: List[String])
+        equipment: Map[String, Boolean],
+        intensity: Map[String, Boolean],
+        injuries: Map[String, Boolean],
+        exerciseRx: Map[String, Boolean],
+        medicalCondition: Map[String, Boolean],
+        gender: List[String])
 
 @import bootstrap3._
 
 <fieldset>
-  <!-- Header1 -->
+        <!-- Header1 -->
     <div class="well">
-    <div id="legend">
-    <legend>Tell us a bit about yourself</legend>
-  </div>
+        <div id="legend">
+            <legend>Tell us a bit about yourself</legend>
+        </div>
 
-   <!-- Age -->
-  @text(userForm("age"),
-        label = "Age",
-        placeholder = "Age in years",
-        help = "Please enter your age in years (required)")
+            <!-- Age -->
+        @text(userForm("age"),
+            label = "Age",
+            placeholder = "Age in years",
+            help = "Please enter your age in years (required)")
 
-  <!-- Gender -->
-    @radiobuttons(userForm("gender"),
-        label = "Gender",
-        buttonNameList = gender,
-        help = "Please select your gender (required)")
+            <!-- Gender -->
+        @radiobuttons(userForm("gender"),
+            label = "Gender",
+            buttonNameList = gender,
+            help = "Please select your gender (required)")
 
-  <!-- Weight -->
-  @text(userForm("weight"),
+            <!-- Weight -->
+        @text(userForm("weight"),
             label = "Weight",
             placeholder = "Weight in kilograms",
             help = "Please enter your weight in kilograms (required)")
-  
-   <!-- Height -->
-  @text(userForm("height"),
+
+            <!-- Height -->
+        @text(userForm("height"),
             label = "Height",
             placeholder = "Height in centimeters",
             help = "Please enter your height in centimeters (required)")
 
 
-  <!-- Injuries -->
-  @select(userForm("injuries"),
-          label = "Injuries",
-          optionMap = injuries,
-          isMultiple = true,
-          help = "Please select any injuries you currently have (optional)")
-</div>
+            <!-- Injuries -->
+        @select(userForm("injuries"),
+            label = "Injuries",
+            optionMap = injuries,
+            isMultiple = true,
+            help = "Please select any injuries you currently have (optional)")
 
-  <!-- Header2 -->
-        <div class="well">
-        <div id="legend">
-    <legend>Tell us about the kind of workout you're interested in today</legend>
-  </div>
-
-        <!-- Intensity -->
-    @select(userForm("intensity"),
-        label = "Intensity",
-        optionMap = intensity,
-        isMultiple = false,
-        help = "Please select a workout intensity (required)")
-
-        <!-- Exercise Rx -->
-    @select(userForm("exerciseRx"),
-        label = "Exercise Type",
-        optionMap = exerciseRx,
-        isMultiple = true,
-        help = "Please select a preferred exercise type (optional)")
-
-   <!-- Equipment -->
-  @checkboxes(userForm("equipment"),
-              label = "Equipment",
-              checkboxMap = equipment,
-              help = "Please check any equipment that you have available to you (optional)")
-</div>
-    <div class="well">
-
- <!-- Header3 -->
-  <div id="legend">
-    <legend>What are your goals for this workout session?</legend>
-  </div>
-
-  <!-- Time -->
-    @text(userForm("time"),
-        label = "Time",
-        placeholder = "Time in minutes",
-        help = "Please select either the time in minutes you would like to exercise for or the number of calories you would like to burn")
-
-
-        <!-- Calories -->
-    @text(userForm("calories"),
-        label = "Calories",
-        placeholder = "Calories",
-        help = "")
-
-</div>
-    <div class="well">
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button id="submit" type="submit" value="Submit" class="btn btn-primary">Suggest a workout for me!</button>
-      <button id="cancel" class="btn cancel">Cancel</button>
+            <!-- Medical Conditions -->
+        @checkboxes(userForm("medicalCondition"),
+            label = "Medical Conditions",
+            checkboxMap = medicalCondition,
+            help = "Please check any medical conditions that you currently have (optional)")
     </div>
-  </div>
+
+        <!-- Header2 -->
+    <div class="well">
+        <div id="legend">
+            <legend>Tell us about the kind of workout you're interested in today</legend>
+        </div>
+
+            <!-- Intensity -->
+        @select(userForm("intensity"),
+            label = "Intensity",
+            optionMap = intensity,
+            isMultiple = false,
+            help = "Please select a workout intensity (required)")
+
+            <!-- Exercise Rx -->
+        @select(userForm("exerciseRx"),
+            label = "Exercise Type",
+            optionMap = exerciseRx,
+            isMultiple = true,
+            help = "Please select a preferred exercise type (optional)")
+
+            <!-- Equipment -->
+        @checkboxes(userForm("equipment"),
+            label = "Equipment",
+            checkboxMap = equipment,
+            help = "Please check any equipment that you have available to you (optional)")
+    </div>
+    <div class="well">
+
+            <!-- Header3 -->
+        <div id="legend">
+            <legend>What are your goals for this workout session?</legend>
+        </div>
+
+            <!-- Time -->
+        @text(userForm("time"),
+            label = "Time",
+            placeholder = "Time in minutes",
+            help = "Please select either the time in minutes you would like to exercise for or the number of calories you would like to burn")
+
+
+            <!-- Calories -->
+        @text(userForm("calories"),
+            label = "Calories",
+            placeholder = "Calories",
+            help = "")
+
+    </div>
+    <div class="well">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="submit" type="submit" value="Submit" class="btn btn-primary">Suggest a workout for me!</button>
+                <button id="cancel" class="btn cancel">Cancel</button>
+            </div>
+        </div>
     </div>
 </fieldset>

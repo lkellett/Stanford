@@ -3,6 +3,7 @@
         intensity: Map[String, Boolean],
         injuries: Map[String, Boolean],
         exerciseRx: Map[String, Boolean],
+        medicalCondition: Map[String, Boolean],
         gender: List[String])
 
 @import helper._
@@ -24,7 +25,7 @@
 
 
             @form(routes.Application.postIndex(), 'class -> "form-horizontal") {
-                @fieldset(userForm, equipment, intensity, injuries, exerciseRx, gender)
+                @fieldset(userForm, equipment, intensity, injuries, exerciseRx, medicalCondition, gender)
             }
 
         }

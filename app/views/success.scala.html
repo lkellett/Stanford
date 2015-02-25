@@ -1,4 +1,5 @@
-@(exercises: List[Exercise])
+@(exercises: List[Exercise],
+        medicalCondition: List[MedicalConditions])
 
 @import helper._
 
@@ -7,11 +8,13 @@
 
     <div class="container">
 
-        @if(flash.containsKey("error")) {
+        @if(medicalCondition.size > 0) {
             <div class="well">
+            @for(condition <- medicalCondition) {
                 <div id="error-message" class="text-danger">
-                @flash.get("error")
+                @condition.warning
                 </div>
+            }
             </div>
         }
 

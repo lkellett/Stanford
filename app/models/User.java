@@ -23,6 +23,7 @@ public class User {
     private Intensity intensity;
     private List<Injury> injuries = new ArrayList<Injury>();
     private List<ExerciseRx> exerciseRx = new ArrayList<ExerciseRx>();
+    private List<MedicalConditions> medicalCondition = new ArrayList<MedicalConditions>();
 
     /**
      * Model entities typically want to have a no-arg constructor.
@@ -53,6 +54,12 @@ public class User {
         if (formData.exerciseRx != null) {
             for (String exerciseRx : formData.exerciseRx) {
                 this.exerciseRx.add(ExerciseRx.findExerciseRx(exerciseRx));
+            }
+        }
+
+        if (formData.medicalCondition != null) {
+            for (String condition : formData.medicalCondition) {
+                this.medicalCondition.add(MedicalConditions.findMedicalCondition(condition));
             }
         }
     }
@@ -166,6 +173,14 @@ public class User {
 
     public void setCalories(Integer calories) {
         this.calories = calories;
+    }
+
+    public List<MedicalConditions> getMedicalCondition() {
+        return medicalCondition;
+    }
+
+    public void setMedicalCondition(List<MedicalConditions> medicalCondition) {
+        this.medicalCondition = medicalCondition;
     }
 
     /**
