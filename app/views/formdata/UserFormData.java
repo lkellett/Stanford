@@ -56,26 +56,26 @@ public class UserFormData {
 
     List<ValidationError> errors = new ArrayList<ValidationError>();
 
-    if (age == null || age > 0) {
+    if (age == null || age <= 0) {
         errors.add(new ValidationError("age", "Please fill in the age field"));
     }
-    if (height == null || height > 0) {
+    if (height == null || height <= 0) {
       errors.add(new ValidationError("height", "Please fill in the height field"));
     }
-    if (gender == null || gender.length() > 0) {
+    if (gender == null || gender.length() == 0) {
       errors.add(new ValidationError("gender", "Please fill in the gender field"));
     }
-    if (weight == null || weight > 0) {
+    if (weight == null || weight <= 0) {
       errors.add(new ValidationError("weight", "Please fill in the weight field"));
     }
     if (intensity == null || intensity.length() == 0) {
       errors.add(new ValidationError("intensity", "Please select an intensity value"));
     }
-    if ((time == null || time > 0) || (calories == null || calories > 0)) {
+    if ((time == null || time <= 0) && (calories == null || calories <= 0)) {
       errors.add(new ValidationError("time", "You need to complete one of either the time or calories field"));
       errors.add(new ValidationError("calories", ""));
     }
-    if (!(time == null || time > 0) && !(calories == null || calories > 0)) {
+    if (!(time == null || time <= 0) && !(calories == null || calories <= 0)) {
       errors.add(new ValidationError("time", "Only one of either the time or calories fields can be completed"));
       errors.add(new ValidationError("calories", ""));
     }

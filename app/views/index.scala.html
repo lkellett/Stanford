@@ -23,19 +23,9 @@
 
         @if(!flash.containsKey("success")) {
 
-
             @form(routes.Application.postIndex(), 'class -> "form-horizontal") {
                 @fieldset(userForm, equipment, intensity, injuries, exerciseRx, medicalCondition, gender)
             }
-
-        }
-
-        @if(flash.containsKey("success")) {
-            <div class="well">
-                <div id="success-message" class="text-success">
-                @flash.get("success")
-                </div>
-            </div>
         }
 
     </div>
