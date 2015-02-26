@@ -125,16 +125,9 @@
     <owl:Class rdf:about="&exercise;Exercise">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;description"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;metabolicEquivalent"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;double"/>
+                <owl:onProperty rdf:resource="&exercise;requiresEquipment"/>
+                <owl:onClass rdf:resource="&exercise;Equipment"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -152,18 +145,32 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;requiresEquipment"/>
-                <owl:onClass rdf:resource="&exercise;Equipment"/>
+                <owl:onProperty rdf:resource="&exercise;metabolicEquivalent"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;double"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;isOfType"/>
+                <owl:onClass rdf:resource="&exercise;Exercise_Type"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&exercise;description"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Exercise_Rx -->
+    <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Exercise_Type -->
 
-    <owl:Class rdf:about="&exercise;Exercise_Rx"/>
+    <owl:Class rdf:about="&exercise;Exercise_Type"/>
     
 
 
@@ -199,16 +206,16 @@
     <owl:Class rdf:about="&exercise;Medical_Conditions">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;warning"/>
+                <owl:onProperty rdf:resource="&exercise;hasPriority"/>
+                <owl:onClass rdf:resource="&exercise;Priority"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&exercise;hasPriority"/>
-                <owl:onClass rdf:resource="&exercise;Priority"/>
+                <owl:onProperty rdf:resource="&exercise;warning"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -263,7 +270,7 @@
     <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Cardiovascular -->
 
     <owl:NamedIndividual rdf:about="&exercise;Cardiovascular">
-        <rdf:type rdf:resource="&exercise;Exercise_Rx"/>
+        <rdf:type rdf:resource="&exercise;Exercise_Type"/>
     </owl:NamedIndividual>
     
 
@@ -344,7 +351,7 @@
     <!-- http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Strength -->
 
     <owl:NamedIndividual rdf:about="&exercise;Strength">
-        <rdf:type rdf:resource="&exercise;Exercise_Rx"/>
+        <rdf:type rdf:resource="&exercise;Exercise_Type"/>
     </owl:NamedIndividual>
     
 
@@ -391,7 +398,6 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Yoga">
         <rdf:type rdf:resource="&exercise;Exercise"/>
-        <minimumTime rdf:datatype="&xsd;integer">30</minimumTime>
         <metabolicEquivalent rdf:datatype="&xsd;double">5.0</metabolicEquivalent>
         <avoidIfHadInjury rdf:resource="&exercise;Shoulder"/>
         <isOfType rdf:resource="&exercise;Strength"/>

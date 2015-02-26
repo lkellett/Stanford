@@ -18,3 +18,8 @@ body {
 .exercise {
     padding-bottom: 10px;
 }
+
+.typeOfExercise {
+    float: right;
+    font-weight: bold;
+}

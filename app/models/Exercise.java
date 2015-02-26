@@ -22,6 +22,7 @@ public class Exercise {
     public String id;
     public Float met;
     public String intensity;
+    public String typeOfExercise;
 
     public String getName() {
         return name;
@@ -95,6 +96,14 @@ public class Exercise {
         this.intensity = intensity;
     }
 
+    public String getTypeOfExercise() {
+        return typeOfExercise;
+    }
+
+    public void setTypeOfExercise(String typeOfExercise) {
+        this.typeOfExercise = typeOfExercise;
+    }
+
     public static List<Exercise> parseOwlResults(Set<OWLNamedIndividual> individuals, OWLOntology ontology, User user) {
 
         List<Exercise> exercises = new ArrayList<Exercise>();
@@ -113,6 +122,7 @@ public class Exercise {
                 OWLDataProperty description = df.getOWLDataProperty(IRI.create(ns + "description"));
                 OWLDataProperty met = df.getOWLDataProperty(IRI.create(ns + "metabolicEquivalent"));
                 OWLObjectProperty avoidIfHadInjury = df.getOWLObjectProperty(IRI.create(ns + "avoidIfHadInjury"));
+                OWLObjectProperty isOfType = df.getOWLObjectProperty(IRI.create(ns + "isOfType"));
                 OWLObjectProperty requiresEquipment = df.getOWLObjectProperty(IRI.create(ns + "requiresEquipment"));
 
 
@@ -159,6 +169,19 @@ public class Exercise {
                     }
                 }
                 exercise.setEquipment(equipment.toString());
+
+                StringBuilder typeVal = new StringBuilder();
+                int k = 0;
+                for (OWLIndividual type : EntitySearcher.getObjectPropertyValues(individual, isOfType, ontology)) {
+                    if (k > 0) {
+                        typeVal.append(", ");
+                    }
+                    if (type.isNamed()) {
+                        typeVal.append(shortFormProvider.getShortForm((OWLNamedIndividual) type).replace("_", " "));
+                        j++;
+                    }
+                }
+                exercise.setTypeOfExercise(typeVal.toString());
 
                 exercises.add(exercise);
             }

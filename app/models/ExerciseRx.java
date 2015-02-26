@@ -53,7 +53,7 @@ public class ExerciseRx {
     Map<String, Boolean> exerciseRxMap = new HashMap<String, Boolean>();
 
     IRI iri = IRI
-            .create("http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Exercise_Rx");
+            .create("http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Exercise_Type");
 
 
     OWLClass exerciseRx = factory.getOWLClass(iri);
