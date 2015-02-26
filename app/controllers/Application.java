@@ -86,6 +86,10 @@ public class Application extends Controller {
             User user = new User(formData.get());
             List<Exercise> exercises = user.findExercises(ontology);
 
+            if(exercises == null || exercises.size() == 0)
+            {
+                flash("error", "Sorry we were unable to find any suitable exercises. Try searching again with less restrictions or seek advice from a fitness professional.");
+            }
             return ok(success.render(exercises, user.getMedicalCondition()
             ));
         }

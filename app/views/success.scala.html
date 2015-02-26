@@ -8,7 +8,15 @@
 
         <div class="container">
 
-            @if(medicalCondition.size > 0) {
+            @if(flash.containsKey("error")) {
+                <div class="well">
+                    <div id="error-message" class="text-danger">
+                        <img src="@routes.Assets.at("images/shrug.png")" alt="" class="priority"> @flash.get("error")
+                    </div>
+                </div>
+            }
+
+            @if(medicalCondition.size > 0 && exercises.size > 0) {
                 <div class="well">
                 @for(condition <- medicalCondition) {
                     <div id="error-message" class="text-danger">
