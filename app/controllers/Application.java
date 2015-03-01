@@ -83,17 +83,46 @@ public class Application extends Controller {
                     getGenders()
             ));
         } else {
+            //try and find exercise with user entered values
             User user = new User(formData.get());
             List<Exercise> exercises = user.findExercises(ontology);
 
-            if(exercises == null || exercises.size() == 0)
-            {
-                flash("error", "Sorry we were unable to find any suitable exercises. Try searching again with less restrictions or seek advice from a fitness professional.");
+            if (exercises == null || exercises.size() == 0) {
+                //if no exercises found, try without the intensity being set
+                Intensity original = user.getIntensity();
+                user.setIntensity(null);
+
+                exercises = user.findExercises(ontology);
+                if (exercises == null || exercises.size() == 0) {
+                    //if still no exercises found, try without the exercise type
+                    user.setIntensity(original);
+                    user.setExerciseRx(new ArrayList<ExerciseRx>());
+
+                    exercises = user.findExercises(ontology);
+
+                    if (exercises == null || exercises.size() == 0) {
+                        //last ditch attempt try with no exercise type and no intensity
+                        user.setIntensity(null);
+                        exercises = user.findExercises(ontology);
+                        if (exercises == null || exercises.size() == 0) {
+                            flash("error", "Sorry we were unable to find any suitable exercises. Try searching again with less restrictions or seek advice from a fitness professional.");
+                        } else {
+                            flash("success", "Sorry we were unable to find any suitable exercises. However we can suggest the following exercises with different exercise types and intensity levels.");
+                        }
+                    } else {
+                        flash("success", "Sorry we were unable to find any suitable exercises. However we can suggest the following exercises with different exercise types.");
+                    }
+
+                } else {
+                    flash("success", "Sorry we were unable to find any suitable exercises. However we can suggest the following exercises with different intensity levels.");
+                }
             }
             return ok(success.render(exercises, user.getMedicalCondition()
             ));
         }
     }
+
+
 
     static OWLOntology loadOntology(OWLOntologyManager manager) {
 

@@ -104,6 +104,7 @@ public class Intensity {
 
       intensityMap.put(name, false);
     }
+
     return intensityMap;
   }
 
@@ -113,6 +114,15 @@ public class Intensity {
   public static Intensity findIntensity(String intensityName) {
     for (Intensity intensity : allIntensity) {
       if (intensityName.equals(intensity.getName())) {
+        return intensity;
+      }
+    }
+    return null;
+  }
+
+  public static Intensity findIntensity(float metVal) {
+    for (Intensity intensity : allIntensity) {
+      if (intensity.getMinimum() <= metVal && intensity.getMaximum() >= metVal) {
         return intensity;
       }
     }

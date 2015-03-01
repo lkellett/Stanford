@@ -3,7 +3,6 @@ package models;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.search.EntitySearcher;
 import org.semanticweb.owlapi.util.ShortFormProvider;
-import org.semanticweb.owlapi.util.SimpleRenderer;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
 import java.util.*;
@@ -115,7 +114,7 @@ public class Exercise {
                 Exercise exercise = new Exercise();
                 exercise.setId(individual.toStringID());
                 exercise.setName(shortFormProvider.getShortForm(individual).replace("_", " "));
-                exercise.setIntensity(user.getIntensity().getName());
+
 
                 String ns = "http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#";
                 OWLDataFactory df = ontology.getOWLOntologyManager().getOWLDataFactory();
@@ -133,6 +132,7 @@ public class Exercise {
 
                     Float metVal = Float.parseFloat(lit.getLiteral());
                     exercise.setMet(metVal);
+                    exercise.setIntensity(Intensity.findIntensity(metVal).getName());
 
                     if(user.time != null) {
                         exercise.setCalories(exercise.getCalories(user, metVal));

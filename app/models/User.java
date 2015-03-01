@@ -228,8 +228,9 @@ public class User {
             queryString.append(") ");
         }
 
-
-        queryString.append(" and (metabolicEquivalent some xsd:double[> " + intensity.getMinimum() + "]) and (metabolicEquivalent some xsd:double[< " + intensity.getMaximum() + "])");
+        if(intensity != null) {
+            queryString.append(" and (metabolicEquivalent some xsd:double[> " + intensity.getMinimum() + "]) and (metabolicEquivalent some xsd:double[< " + intensity.getMaximum() + "])");
+        }
 
         System.out.println(queryString.toString());
         Set<OWLNamedIndividual> individuals = query.executeQuery(queryString.toString());

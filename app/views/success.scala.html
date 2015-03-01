@@ -16,6 +16,14 @@
                 </div>
             }
 
+            @if(flash.containsKey("success")) {
+                <div class="well">
+                    <div id="error-message" class="text-danger">
+                        <img src="@routes.Assets.at("images/suggest.png")" alt="" class="priority"> @flash.get("success")
+                    </div>
+                </div>
+            }
+
             @if(medicalCondition.size > 0 && exercises.size > 0) {
                 <div class="well">
                 @for(condition <- medicalCondition) {
