@@ -285,6 +285,7 @@
         <metabolicEquivalent rdf:datatype="&xsd;double">5.0</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">ballet, modern, or jazz, general, rehearsal or class</description>
         <isOfType rdf:resource="&exercise;Aerobic"/>
+        <requiresEquipment rdf:resource="&exercise;None"/>
     </owl:NamedIndividual>
     
 
@@ -295,6 +296,7 @@
         <rdf:type rdf:resource="&exercise;Exercise"/>
         <metabolicEquivalent rdf:datatype="&xsd;double">2.0</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">Yoga, hatha</description>
+        <requiresEquipment rdf:resource="&exercise;None"/>
         <isOfType rdf:resource="&exercise;Stretching"/>
     </owl:NamedIndividual>
     
@@ -315,6 +317,7 @@
         <metabolicEquivalent rdf:datatype="&xsd;double">11.0</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">rope skipping, general</description>
         <isOfType rdf:resource="&exercise;Bone-strengthening"/>
+        <requiresEquipment rdf:resource="&exercise;Skipping_rope"/>
     </owl:NamedIndividual>
     
 
@@ -388,6 +391,7 @@
         <description rdf:datatype="&xsd;string">running, 5 mph (12 min/mile)</description>
         <isOfType rdf:resource="&exercise;Aerobic"/>
         <isOfType rdf:resource="&exercise;Bone-strengthening"/>
+        <requiresEquipment rdf:resource="&exercise;None"/>
     </owl:NamedIndividual>
     
 
@@ -445,6 +449,7 @@
         <metabolicEquivalent rdf:datatype="&xsd;double">4.3</metabolicEquivalent>
         <description rdf:datatype="&xsd;string">walking, 3.5 mph, level, brisk, firm surface, walking for exercise</description>
         <isOfType rdf:resource="&exercise;Bone-strengthening"/>
+        <requiresEquipment rdf:resource="&exercise;None"/>
     </owl:NamedIndividual>
     
 
