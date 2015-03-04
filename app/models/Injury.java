@@ -48,7 +48,7 @@ public class Injury {
    *
    */
   public static Map<String, Boolean> makeInjuriesMap(OWLReasoner reasoner, OWLDataFactory factory) {
-    Map<String, Boolean> injuriesMap = new HashMap<String, Boolean>();
+    Map<String, Boolean> injuriesMap = new TreeMap<String, Boolean>();
 
     IRI iri = IRI
             .create("http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Injuries");

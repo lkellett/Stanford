@@ -68,7 +68,7 @@ public class MedicalConditions {
      *
      */
     public static Map<String, Boolean> makeMedicalConditionMap(OWLOntology ontology, OWLReasoner reasoner, OWLDataFactory factory) {
-        Map<String, Boolean> medicalConditionMap = new HashMap<String, Boolean>();
+        Map<String, Boolean> medicalConditionMap = new TreeMap<String, Boolean>();
 
         String ns = "http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#";
         IRI iri = IRI

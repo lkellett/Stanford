@@ -68,7 +68,7 @@ public class Intensity {
    *
    */
   public static Map<String, Boolean> makeIntensityMap(OWLOntology ontology, OWLReasoner reasoner, OWLDataFactory factory) {
-    Map<String, Boolean> intensityMap = new HashMap<String, Boolean>();
+    Map<String, Boolean> intensityMap = new TreeMap<String, Boolean>();
 
     String ns = "http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#";
     IRI iri = IRI

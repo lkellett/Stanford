@@ -50,7 +50,7 @@ public class ExerciseRx {
    *
    */
   public static Map<String, Boolean> makeExerciseRxMap(OWLReasoner reasoner, OWLDataFactory factory) {
-    Map<String, Boolean> exerciseRxMap = new HashMap<String, Boolean>();
+    Map<String, Boolean> exerciseRxMap = new TreeMap<String, Boolean>();
 
     IRI iri = IRI
             .create("http://www.semanticweb.org/larakellett/ontologies/2015/1/exercise#Exercise_Type");
