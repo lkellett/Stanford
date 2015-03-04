@@ -65,8 +65,8 @@ public class UserFormData {
     if (height == null || height <= 0) {
       errors.add(new ValidationError("height", "Please fill in the height field"));
     }
-    if (height < 20 || height > 260) {
-      errors.add(new ValidationError("height", "Invalid value in the height field, please enter the height in cm, should be a value in between 20-260"));
+    if (height < 50 || height > 260) {
+      errors.add(new ValidationError("height", "Invalid value"));
     }
     if (gender == null || gender.length() == 0) {
       errors.add(new ValidationError("gender", "Please fill in the gender field"));
