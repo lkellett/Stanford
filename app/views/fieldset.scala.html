@@ -41,10 +41,9 @@
 
 
             <!-- Injuries -->
-        @select(userForm("injuries"),
+        @checkboxes(userForm("injuries"),
             label = "Injuries",
-            optionMap = injuries,
-            isMultiple = true,
+            checkBoxMap = injuries,
             help = "Please select any injuries you currently have (optional)")
 
             <!-- Medical Conditions -->
@@ -68,10 +67,9 @@
             help = "Please select a workout intensity (required)")
 
             <!-- Exercise Rx -->
-        @select(userForm("exerciseRx"),
+        @checkboxes(userForm("exerciseRx"),
             label = "Exercise Type",
-            optionMap = exerciseRx,
-            isMultiple = true,
+            checkBoxMap = exerciseRx,
             help = "Please select a preferred exercise type (optional)")
 
             <!-- Equipment -->
@@ -98,7 +96,7 @@
         @text(userForm("calories"),
             label = "Calories",
             placeholder = "Calories",
-            help = "")
+            help = "Please select either the time in minutes you would like to exercise for or the number of calories you would like to burn")
 
     </div>
     <div class="well">

@@ -59,8 +59,14 @@ public class UserFormData {
     if (age == null || age <= 0) {
         errors.add(new ValidationError("age", "Please fill in the age field"));
     }
+    if (age < 18 || age > 65) {
+      errors.add(new ValidationError("age", "Sorry in order to calculate calorie estimates this application can only be used for ages 18-65"));
+    }
     if (height == null || height <= 0) {
       errors.add(new ValidationError("height", "Please fill in the height field"));
+    }
+    if (height < 20 || height > 260) {
+      errors.add(new ValidationError("height", "Invalid value in the height field, please enter the height in cm, should be a value in between 20-260"));
     }
     if (gender == null || gender.length() == 0) {
       errors.add(new ValidationError("gender", "Please fill in the gender field"));

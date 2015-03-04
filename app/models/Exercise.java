@@ -178,7 +178,7 @@ public class Exercise {
                     }
                     if (type.isNamed()) {
                         typeVal.append(shortFormProvider.getShortForm((OWLNamedIndividual) type).replace("_", " "));
-                        j++;
+                        k++;
                     }
                 }
                 exercise.setTypeOfExercise(typeVal.toString());
