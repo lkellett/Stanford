@@ -191,6 +191,7 @@ public class Exercise {
 
             @Override
             public int compare(Exercise e1, Exercise e2) {
+
                 return (e1.met > e2.met) ? -1 : 1;
             }
 

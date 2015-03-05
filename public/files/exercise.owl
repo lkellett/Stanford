@@ -251,7 +251,6 @@
 
     <owl:NamedIndividual rdf:about="&exercise;Bone-strengthening">
         <rdf:type rdf:resource="&exercise;Exercise_Type"/>
-        <avoidIfHadInjury rdf:resource="&exercise;Knee"/>
     </owl:NamedIndividual>
     
 

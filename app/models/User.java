@@ -195,6 +195,7 @@ public class User {
         int i = 0;
         for(Injury injury: injuries)
         {
+           System.out.println("Injury" + injury);
             if(i > 0)
             {
                 exclusionString.append(" or ");
